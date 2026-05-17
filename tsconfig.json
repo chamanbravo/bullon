@@ -1,12 +1,7 @@
 {
-  "compilerOptions": {
-    "target": "ES2022",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "strict": true,
-    "noEmit": true,
-    "allowImportingTsExtensions": true,
-    "skipLibCheck": true
-  },
-  "include": ["api/src/**/*"]
+  "files": [],
+  "references": [
+    { "path": "api" },
+    { "path": "ui" }
+  ]
 }
