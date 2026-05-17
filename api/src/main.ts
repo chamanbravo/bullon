@@ -8,6 +8,8 @@ const confirmationQueue = new Bull("confirmation-queue");
 const followupQueue = new Bull("followup-queue");
 const notificationQueue = new Bull("no-appointment-queue");
 
+app.use(express.json())
+
 app.use(
   "/admin",
   createBullonExpressMiddleware({

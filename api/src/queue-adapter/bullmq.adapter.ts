@@ -50,7 +50,7 @@ export class BullMQAdapter extends BaseAdapter {
       processedOn: job.processedOn ?? undefined,
       finishedOn: job.finishedOn ?? undefined,
       failedReason: job.failedReason,
-      stacktrace: job.stacktrace,
+      stacktrace: job.stacktrace ?? undefined,
       returnValue: job.returnvalue,
       attemptsMade: job.attemptsMade,
     }));
@@ -68,7 +68,7 @@ export class BullMQAdapter extends BaseAdapter {
       processedOn: job.processedOn ?? undefined,
       finishedOn: job.finishedOn ?? undefined,
       failedReason: job.failedReason,
-      stacktrace: job.stacktrace,
+      stacktrace: job.stacktrace ?? undefined,
       returnValue: job.returnvalue,
       attemptsMade: job.attemptsMade,
     };

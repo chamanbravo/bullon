@@ -50,7 +50,7 @@ export function createQueueRouter(adapters: BaseAdapter[]): Router {
   router.get(
     "/queues/:name",
     asyncRoute(async (req, res) => {
-      const adapter = find(req.params.name);
+      const adapter = find(String(req.params.name));
       if (!adapter) {
         res.status(404).json({ error: "Queue not found" });
         return;
@@ -67,7 +67,7 @@ export function createQueueRouter(adapters: BaseAdapter[]): Router {
   router.post(
     "/queues/:name/pause",
     asyncRoute(async (req, res) => {
-      const adapter = find(req.params.name);
+      const adapter = find(String(req.params.name));
       if (!adapter) {
         res.status(404).json({ error: "Queue not found" });
         return;
@@ -80,7 +80,7 @@ export function createQueueRouter(adapters: BaseAdapter[]): Router {
   router.post(
     "/queues/:name/resume",
     asyncRoute(async (req, res) => {
-      const adapter = find(req.params.name);
+      const adapter = find(String(req.params.name));
       if (!adapter) {
         res.status(404).json({ error: "Queue not found" });
         return;
@@ -93,7 +93,7 @@ export function createQueueRouter(adapters: BaseAdapter[]): Router {
   router.get(
     "/queues/:name/jobs",
     asyncRoute(async (req, res) => {
-      const adapter = find(req.params.name);
+      const adapter = find(String(req.params.name));
       if (!adapter) {
         res.status(404).json({ error: "Queue not found" });
         return;
@@ -112,12 +112,12 @@ export function createQueueRouter(adapters: BaseAdapter[]): Router {
   router.get(
     "/queues/:name/jobs/:id",
     asyncRoute(async (req, res) => {
-      const adapter = find(req.params.name);
+      const adapter = find(String(req.params.name));
       if (!adapter) {
         res.status(404).json({ error: "Queue not found" });
         return;
       }
-      const job = await adapter.getJob(req.params.id);
+      const job = await adapter.getJob(String(req.params.id));
       if (!job) {
         res.status(404).json({ error: "Job not found" });
         return;
@@ -129,12 +129,12 @@ export function createQueueRouter(adapters: BaseAdapter[]): Router {
   router.post(
     "/queues/:name/jobs/:id/retry",
     asyncRoute(async (req, res) => {
-      const adapter = find(req.params.name);
+      const adapter = find(String(req.params.name));
       if (!adapter) {
         res.status(404).json({ error: "Queue not found" });
         return;
       }
-      await adapter.retryJob(req.params.id);
+      await adapter.retryJob(String(req.params.id));
       res.json({ ok: true });
     }),
   );
@@ -142,12 +142,12 @@ export function createQueueRouter(adapters: BaseAdapter[]): Router {
   router.delete(
     "/queues/:name/jobs/:id",
     asyncRoute(async (req, res) => {
-      const adapter = find(req.params.name);
+      const adapter = find(String(req.params.name));
       if (!adapter) {
         res.status(404).json({ error: "Queue not found" });
         return;
       }
-      await adapter.removeJob(req.params.id);
+      await adapter.removeJob(String(req.params.id));
       res.json({ ok: true });
     }),
   );
